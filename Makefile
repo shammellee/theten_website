@@ -50,7 +50,7 @@ CLEAN.CMD        = rm $(CLEAN.FLAGS)
 CLEAN.FLAGS     := -rf
 
 COFFEE.CMD       = coffee $(COFFEE.FLAGS)
-COFFEE.FLAGS    := --bare --compile --no-header
+COFFEE.FLAGS    := --compile --no-header
 
 JADE.CMD         = jade $(JADE.FLAGS)
 JADE.FLAGS      := --pretty

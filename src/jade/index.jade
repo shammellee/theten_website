@@ -7,15 +7,15 @@ html(lang='en')
 
   body
     #logo_nav
-      span.logo
+      span(data-page='home').logo
 
       #nav
         ul.nav__main
-          li(data-page='home').nav_item__main home
-          li(data-page='collection_zero').nav_item__main collection zero
-          li.nav_item__main: a(href='https://www.tumblr.com/blog/thetenusa', target='_blank') style journal
-          li(data-page='philosophy').nav_item__main philosophy
-          li(data-page='contact').nav_item__main contact
+          li(data-page='home').nav_item__main.nav_item_page home
+          li(data-page='collection_zero').nav_item__main.nav_item_page.selected collection zero
+          li.nav_item__main: a(href='http://thetenusa.tumblr.com/', target='_blank') style journal
+          li(data-page='philosophy').nav_item__main.nav_item_page philosophy
+          li(data-page='contact').nav_item__main.nav_item_page contact
 
         ul.nav__social
           li.nav_item__social: a(href='https://twitter.com/theTENusa', target='_blank') twitter
@@ -25,13 +25,27 @@ html(lang='en')
 
     #pages
 
-      #home.bg_img.selected
+      #home.page.bg_img
 
-      #collection_zero.bg_img
+      #collection_zero.page.bg_img.backdrop.selected 
+        ul#collection_item_shell
+          li(data-top-id='0.1').collection_item.collection_item__01.bg_img
+          li(data-top-id='0.6', data-bottom-id='0.2').collection_item.collection_item__02.bg_img
+          li(data-top-id='0.6', data-bottom-id='0.3').collection_item.collection_item__03.bg_img
+          li(data-top-id='0.6', data-bottom-id='0.4').collection_item.collection_item__04.bg_img
+          li(data-top-id='0.7', data-bottom-id='0.2').collection_item.collection_item__05.bg_img
+          li(data-top-id='0.7', data-bottom-id='0.5').collection_item.collection_item__06.bg_img
+          li(data-top-id='0.8').collection_item.collection_item__07.bg_img
+          li(data-top-id='0.1').collection_item.collection_item__08.bg_img
+        #collection_nav_shell
+          span.collection_nav_arrow.collection_nav_arrow__left
+          span.collection_nav_info__single
+          span.collection_nav_info__double
+          span.collection_nav_arrow.collection_nav_arrow__right
 
-      #philosophy.bg_img
+      #philosophy.page.bg_img
 
-      #contact
+      #contact.page.backdrop
 
 
     #footer
