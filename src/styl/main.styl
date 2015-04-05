@@ -1,0 +1,98 @@
+@require 'nib'
+global-reset()
+@require 'inc'
+
+html, body
+  height 100%
+
+body
+  background      BACKGROUND_COLOR 
+  background-size 100% 100%
+  color           DARK_GREY
+  font-family     Helvetica, Arial, sans-serif
+
+#logo_nav
+  position absolute
+  top 28px
+  left 36px
+  z-index 1
+  .logo
+    color         LOGO_COLOR
+    cursor        pointer
+    display       inline-block
+    margin-bottom 19px
+
+  #nav
+    ul
+      clearfix()
+    li
+      clear       both
+      cursor      pointer
+      display     block
+      float       left
+      font-size   .85em
+      line-height 1.42
+      padding     1px 5px 0
+      &:hover
+        background DARK_GREY
+        a
+          color      TEXT_SELECTED
+      a
+        text-decoration none
+
+    .nav__main
+      margin-bottom 8px
+      .nav_item__main
+        &:hover
+          color      TEXT_SELECTED
+      a
+        color DARK_GREY
+    .nav__social
+      .nav_item__social
+        &:hover
+          color      TEXT_SELECTED
+      a
+        color LIGHT_GREY
+
+#pages
+  div
+    display  none
+    height   100%
+    left     0
+    overflow hidden
+    position fixed
+    top      0
+    width    100%
+    z-index  0
+    &.selected
+      display block
+    &.bg_img
+      background-attachment   fixed
+      background-position     center center
+      background-repeat       no-repeat
+      -webkit-background-size cover
+      -moz-background-size    cover
+      -o-background-size      cover
+      background-size         cover
+
+  #home
+    background-image url('../img/home_hero.jpg')
+
+  #collection_zero
+  #contact
+    background-image        url('../img/bg.png')
+    background-repeat       repeat-x
+    -webkit-background-size 100% 100%
+    -moz-background-size    100% 100%
+    -o-background-size      100% 100%
+    background-size         100% 100%
+  #philosophy
+    background-image url('../img/philosophy_hero.jpg')
+
+#footer
+  bottom    16px
+  color     LIGHT_GREY
+  font-size .718em
+  left      37px
+  position  absolute
+

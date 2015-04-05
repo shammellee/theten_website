@@ -1,0 +1,41 @@
+doctype strict
+html(lang='en')
+
+  head
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='css/main.css')
+
+  body
+    #logo_nav
+      span.logo
+
+      #nav
+        ul.nav__main
+          li(data-page='home').nav_item__main home
+          li(data-page='collection_zero').nav_item__main collection zero
+          li.nav_item__main: a(href='https://www.tumblr.com/blog/thetenusa', target='_blank') style journal
+          li(data-page='philosophy').nav_item__main philosophy
+          li(data-page='contact').nav_item__main contact
+
+        ul.nav__social
+          li.nav_item__social: a(href='https://twitter.com/theTENusa', target='_blank') twitter
+          li.nav_item__social: a(href='https://www.facebook.com/thetenusa', target='_blank') facebook
+          li.nav_item__social: a(href='https://instagram.com/thetenusa', target='_blank') instagram
+          li.nav_item__social: a(href='https://www.pinterest.com/thetenusa', target='_blank') pinterest
+
+    #pages
+
+      #home.bg_img.selected
+
+      #collection_zero.bg_img
+
+      #philosophy.bg_img
+
+      #contact
+
+
+    #footer
+      p &copy; 2015 theTEN Apparel, Inc. All rights reserved
+
+    script(src='js/jquery-1.11.2.min.js')
+    script(src='js/main.js')
