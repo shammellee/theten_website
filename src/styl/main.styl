@@ -21,9 +21,10 @@ body
   background-size         cover
 
 #logo_nav
-  position absolute
-  top 28px
-  left 36px
+  position fixed
+  top         28px
+  left        36px
+  user-select none
   z-index 1
   .logo
     color         LOGO_COLOR
@@ -46,6 +47,7 @@ body
 
       &:hover
         background DARK_GREY
+        transition 0s
         a
           color TEXT_SELECTED
       a
@@ -60,7 +62,7 @@ body
           color      TEXT_SELECTED
 
         &:hover
-          color      TEXT_SELECTED
+          color TEXT_SELECTED
       a
         color DARK_GREY
     .nav__social
@@ -129,14 +131,21 @@ body
       background-image url('../img/collection_zero_07.jpg')
     .collection_item__08
       background-image url('../img/collection_zero_08.jpg')
+    #collection_nav_shell
+      bottom      80px
+      color       LIGHT_GREY
+      left        36px
+      position    fixed
+      user-select none
 
   #philosophy
     background-image url('../img/philosophy_hero.jpg')
 
 #footer
-  bottom    16px
-  color     LIGHT_GREY
-  font-size .718em
-  left      37px
-  position  absolute
+  bottom      16px
+  color       LIGHT_GREY
+  font-size   .718em
+  left        37px
+  position    absolute
+  user-select none
 
