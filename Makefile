@@ -46,25 +46,25 @@ DEV_DEPS := dev.dirs dev.setup dev.coffee dev.jade dev.styl
 PROD_DEPS = $(DEV_DEPS:dev.%=prod.%)
 
 # COMMANDS
-CLEAN.CMD        = rm $(CLEAN.FLAGS)
-CLEAN.FLAGS     := -rf
+CLEAN.CMD     = rm $(CLEAN.FLAGS)
+CLEAN.FLAGS  := -rf
 
-COFFEE.CMD       = coffee $(COFFEE.FLAGS)
-COFFEE.FLAGS    := --compile --no-header
+COFFEE.CMD    = coffee $(COFFEE.FLAGS)
+COFFEE.FLAGS := --compile --no-header
 
-JADE.CMD         = jade $(JADE.FLAGS)
-JADE.FLAGS      := --pretty
+JADE.CMD      = jade $(JADE.FLAGS)
+JADE.FLAGS   := --pretty
 
-MKDIRS.CMD       = mkdir $(MKDIRS.FLAGS)
-MKDIRS.FLAGS    := -p
+MKDIRS.CMD    = mkdir $(MKDIRS.FLAGS)
+MKDIRS.FLAGS := -p
 
-STYLUS.CMD       = stylus $(STYLUS.FLAGS)
-STYLUS.FLAGS    := --use 'nib'
-STYLUS.FLAGS    += --include-css
+STYLUS.CMD    = stylus $(STYLUS.FLAGS)
+STYLUS.FLAGS := --use 'nib'
+STYLUS.FLAGS += --include-css
 
-UGLIFY.CMD       = uglifyjs $(UGLIFY.FLAGS)
-UGLIFY.FLAGS    := --mangle
-UGLIFY.FLAGS    += --compress
+UGLIFY.CMD    = uglifyjs $(UGLIFY.FLAGS)
+UGLIFY.FLAGS := --mangle
+UGLIFY.FLAGS += --compress
 
 all: prod
 
@@ -73,18 +73,18 @@ dev: | $(DEV_DEPS)
 dev.dirs:
 	$(MKDIRS.CMD) $(BUILD.DIRS)
 
-dev.setup:
+dev.setup: dev.dirs
 	cp $(SRC.IMG_DIR)/* $(BUILD.IMG_DIR)/
 	cp $(SRC.FONT_DIR)/* $(BUILD.FONT_DIR)/
 	cp $(SRC.VENDOR_DIR)/*.js $(BUILD.JS_DIR)/
 
-dev.coffee:
+dev.coffee: dev.setup
 	$(COFFEE.CMD) --watch --output $(BUILD.JS_DIR) $(SRC.COFFEE_DIR)
 
-dev.jade:
+dev.jade: dev.setup
 	$(JADE.CMD) --watch $(SRC.JADE_DIR)/*.jade --out $(BUILD.DIR)
 
-dev.styl:
+dev.styl: dev.setup
 	$(STYLUS.CMD) --watch $(SRC.STYLUS_DIR) --out $(BUILD.CSS_DIR)
 
 prod: | $(PROD_DEPS)
