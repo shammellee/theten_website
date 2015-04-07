@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+while true; do
+  clear
+  git status
+  sleep 1
+done
+

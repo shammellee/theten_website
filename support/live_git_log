@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+while true; do
+  clear
+  git log --oneline --decorate --graph --max-count=10
+  sleep 1
+done
+
