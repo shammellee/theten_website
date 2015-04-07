@@ -1,3 +1,5 @@
+'use strict'
+
 @theTEN =
   $logo    : $('#logo_nav').find '.logo'
   $pageNav : $('.nav__main').find '.nav_item_page'
