@@ -74,9 +74,9 @@ dev.dirs:
 	$(MKDIRS.CMD) $(BUILD.DIRS)
 
 dev.setup:
-	cp $(SRC.IMG_DIR)/* $(BUILD.IMG_DIR)
-	cp $(SRC.FONT_DIR)/* $(BUILD.FONT_DIR)
-	cp $(SRC.VENDOR_DIR)/*.js $(BUILD.JS_DIR)
+	cp $(SRC.IMG_DIR)/* $(BUILD.IMG_DIR)/
+	cp $(SRC.FONT_DIR)/* $(BUILD.FONT_DIR)/
+	cp $(SRC.VENDOR_DIR)/*.js $(BUILD.JS_DIR)/
 
 dev.coffee:
 	$(COFFEE.CMD) --watch --output $(BUILD.JS_DIR) $(SRC.COFFEE_DIR)
