@@ -55,6 +55,8 @@ COFFEE.FLAGS := --compile --no-header
 JADE.CMD      = jade $(JADE.FLAGS)
 JADE.FLAGS   := --pretty
 
+LIVE.CMD     = while true; do clear; $1; sleep 1; done
+
 MKDIRS.CMD    = mkdir $(MKDIRS.FLAGS)
 MKDIRS.FLAGS := -p
 
@@ -68,6 +70,16 @@ UGLIFY.FLAGS += --compress
 
 all: prod
 
+livetree:
+	./$(SUPPORT.DIR)/live_build_tree
+
+livestatus:
+	./$(SUPPORT.DIR)/live_git_status
+
+livelog:
+	./$(SUPPORT.DIR)/live_git_log
+
+# DEVELOPMENT
 dev: | $(DEV_DEPS)
 
 dev.dirs:
@@ -87,6 +99,7 @@ dev.jade: dev.setup
 dev.styl: dev.setup
 	$(STYLUS.CMD) --watch $(SRC.STYLUS_DIR) --out $(BUILD.CSS_DIR)
 
+# PRODUCTION
 prod: | $(PROD_DEPS)
 	@echo -e '\033[32mBuild Complete!\033[0m'
 
