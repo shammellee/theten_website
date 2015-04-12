@@ -1,5 +1,7 @@
 'use strict'
 
+_window = @
+
 @CollectionNav = ->
 
 $.extend @CollectionNav.prototype,
@@ -19,6 +21,11 @@ $.extend @CollectionNav.prototype,
     $navLeft.click $.proxy @_attributes.collection.prev, @_attributes.collection
     $navRight.click $.proxy @_attributes.collection.next, @_attributes.collection
 
+    # KEY EVENTS
+    $(_window.document).keyup (e) =>
+      @_attributes.collection.prev() if e.which is 37
+      @_attributes.collection.next() if e.which is 39
+    
   set: (prop, val) ->
     return unless prop
 

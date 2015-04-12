@@ -2,6 +2,7 @@
 
 @Collection = ->
   @currentItemIndex = 0
+  @transitionSpeed  = .15
 
   # return `false` so Collection.prototype is used
   false
@@ -23,8 +24,7 @@ $.extend @Collection.prototype,
 
   init: ->
     $collection = @_attributes.$collection = $(@_attributes.selector).children()
-    $collection.hide().first().show()
-
+    $collection.css('visibility','hidden').first().css('visibility','visible')
     $collection.addClass "collection_item collection_item__#{@_attributes.align}"
 
     @_attributes.$collection.each (i,el) ->
@@ -33,24 +33,24 @@ $.extend @Collection.prototype,
       $el.css 'background-image', "url(#{$el.data 'image'})"
 
   next: (e) ->
-    @_attributes.$collection.eq(@currentItemIndex).hide()
+    TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:0})
 
     if @currentItemIndex >= @_attributes.$collection.length - 1
       @currentItemIndex = 0
     else
       @currentItemIndex++
 
-    @_attributes.$collection.eq(@currentItemIndex).show()
+    TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:1})
 
   prev: ->
-    @_attributes.$collection.eq(@currentItemIndex).hide()
+    TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:0})
 
     if @currentItemIndex <= 0
       @currentItemIndex = @_attributes.$collection.length - 1
     else
       @currentItemIndex--
 
-    @_attributes.$collection.eq(@currentItemIndex).show()
+    TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:1})
 
   set: (prop, val) ->
     return unless prop
