@@ -42,31 +42,43 @@ BUILD.DIRS         += $(BUILD.IMG_DIR)
 BUILD.DIRS         += $(BUILD.JS_DIR)
 
 # DEPENDENCIES
-DEV_DEPS := dev.dirs dev.setup dev.coffee dev.jade dev.styl
-PROD_DEPS = $(DEV_DEPS:dev.%=prod.%)
+DEV_DEPS        := dev.dirs dev.setup dev.coffee dev.jade dev.styl
+PROD_DEPS        = $(DEV_DEPS:dev.%=prod.%)
+NPM.PKGS        := coffee-script@1.9.0
+NPM.PKGS        += stylus@0.50.0
+NPM.PKGS        += jade@1.9.2
+NPM.PKGS        += nib@1.1.0
+NPM.PKGS        += uglify-js@2.4.19
+BREW.PKGS       := cairo
 
 # COMMANDS
-CLEAN.CMD     = rm $(CLEAN.FLAGS)
-CLEAN.FLAGS  := -rf
+BREW_INSTALL.CMD    = brew install $(BREW_INSTALL.FLAGS)
+BREW_INSTALL.FLAGS :=
 
-COFFEE.CMD    = coffee $(COFFEE.FLAGS)
-COFFEE.FLAGS := --compile --no-header
+CLEAN.CMD           = rm $(CLEAN.FLAGS)
+CLEAN.FLAGS        := -rf
 
-JADE.CMD      = jade $(JADE.FLAGS)
-JADE.FLAGS   := --pretty
+COFFEE.CMD          = coffee $(COFFEE.FLAGS)
+COFFEE.FLAGS       := --compile --no-header
 
-LIVE.CMD     = while true; do clear; $1; sleep 1; done
+JADE.CMD            = jade $(JADE.FLAGS)
+JADE.FLAGS         := --pretty
 
-MKDIRS.CMD    = mkdir $(MKDIRS.FLAGS)
-MKDIRS.FLAGS := -p
+LIVE.CMD            = while true; do clear; $1; sleep 1; done
 
-STYLUS.CMD    = stylus $(STYLUS.FLAGS)
-STYLUS.FLAGS := --use 'nib'
-STYLUS.FLAGS += --include-css
+MKDIRS.CMD          = mkdir $(MKDIRS.FLAGS)
+MKDIRS.FLAGS       := -p
 
-UGLIFY.CMD    = uglifyjs $(UGLIFY.FLAGS)
-UGLIFY.FLAGS := --mangle
-UGLIFY.FLAGS += --compress
+NPM_INSTALL.CMD     = npm install $(NPM_INSTALL.FLAGS)
+NPM_INSTALL.FLAGS  :=
+
+STYLUS.CMD          = stylus $(STYLUS.FLAGS)
+STYLUS.FLAGS       := --use 'nib'
+STYLUS.FLAGS       += --include-css
+
+UGLIFY.CMD          = uglifyjs $(UGLIFY.FLAGS)
+UGLIFY.FLAGS       := --mangle
+UGLIFY.FLAGS       += --compress
 
 all: prod
 
@@ -78,6 +90,11 @@ livestatus:
 
 livelog:
 	./$(SUPPORT.DIR)/live_git_log
+
+# DEPENDENCIES
+deps:
+	$(BREW_INSTALL.CMD) $(BREW.PKGS)
+	$(NPM_INSTALL.CMD) $(NPM.PKGS)
 
 # DEVELOPMENT
 dev: | $(DEV_DEPS)
@@ -122,5 +139,7 @@ prod.styl:
 clean:
 	@echo -e '\033[33mCleaning Project...\033[0m'
 	@$(CLEAN.CMD)\
-		$(BUILD.DIR)
+		$(BUILD.DIR)\
+		node_modules\
+		*.log
 	@echo -e '\033[32mProject Clean!\033[0m'
