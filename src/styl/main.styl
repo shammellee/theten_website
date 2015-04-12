@@ -1,6 +1,8 @@
 @require 'nib'
 global-reset()
 @require 'inc'
+@require 'Collection'
+@require 'CollectionNav'
 
 html, body
   height 100%
@@ -25,7 +27,7 @@ body
   top         28px
   left        36px
   user-select none
-  z-index 1
+  z-index     1
   .logo
     color         LOGO_COLOR
     cursor        pointer
@@ -104,51 +106,6 @@ body
   #home
     background-image url('../img/home_hero.jpg')
 
-  #collection_zero
-    .collection_item
-      background-position right top
-      -webkit-background-size auto 100%
-      -moz-background-size    auto 100%
-      -o-background-size      auto 100%
-      background-size         auto 100%
-      height                  100%
-      position                absolute
-      right                   0
-      top                     0
-      width                   100%
-    .collection_item__01
-      background-image url('../img/collection_zero_01.jpg')
-    .collection_item__02
-      background-image url('../img/collection_zero_02.jpg')
-    .collection_item__03
-      background-image url('../img/collection_zero_03.jpg')
-    .collection_item__04
-      background-image url('../img/collection_zero_04.jpg')
-    .collection_item__05
-      background-image url('../img/collection_zero_05.jpg')
-    .collection_item__06
-      background-image url('../img/collection_zero_06.jpg')
-    .collection_item__07
-      background-image url('../img/collection_zero_07.jpg')
-    .collection_item__08
-      background-image url('../img/collection_zero_08.jpg')
-
-    #collection_nav_shell
-      bottom      80px
-      color       LIGHT_GREY
-      left        36px
-      position    fixed
-      user-select none
-
-      .collection_nav_arrow
-          cursor pointer
-
-          &:hover
-            color DARK_GREY
-
-      .collection_nav_info__single
-      .collection_nav_info__double
-        margin 0 30px
   #philosophy
     background-image url('../img/philosophy_hero.jpg')
 

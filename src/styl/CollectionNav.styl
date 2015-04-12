@@ -1,0 +1,49 @@
+.collection_nav_arrow
+  font-family             'nav'
+  font-size               2.4em
+  font-style              normal
+  font-variant            normal
+  font-weight             normal
+  speak                   none
+  text-transform          none
+  -webkit-font-smoothing  antialiased
+  -moz-osx-font-smoothing grayscale
+
+.collection_nav__left
+  &:before 
+    content "\e600"
+
+.collection_nav__right
+  &:before 
+    content "\e601"
+
+.collection_nav_info__single
+.collection_nav_info__double
+  font-family             'num'
+  font-size               3.1em
+  font-style              normal
+  font-variant            normal
+  font-weight             normal
+  speak                   none
+  text-transform          none
+  -webkit-font-smoothing  antialiased
+  -moz-osx-font-smoothing grayscale
+
+.collection_nav_shell
+  bottom      80px
+  color       LIGHT_GREY
+  left        36px
+  position    fixed
+  user-select none
+
+  .collection_nav_arrow
+      cursor pointer
+
+      &:hover
+        color DARK_GREY
+
+  .collection_nav_info__single
+  .collection_nav_info__double
+    margin 0 30px
+
+

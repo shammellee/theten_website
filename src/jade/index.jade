@@ -28,23 +28,23 @@ html(lang='en')
       #home.page.bg_img
 
       #collection_zero.page.bg_img.backdrop.selected 
-        ul#collection_item_shell
-          li(data-top-id='0.1').collection_item.collection_item__01.bg_img
-          li(data-top-id='0.6', data-bottom-id='0.2').collection_item.collection_item__02.bg_img
-          li(data-top-id='0.6', data-bottom-id='0.3').collection_item.collection_item__03.bg_img
-          li(data-top-id='0.6', data-bottom-id='0.4').collection_item.collection_item__04.bg_img
-          li(data-top-id='0.7', data-bottom-id='0.2').collection_item.collection_item__05.bg_img
-          li(data-top-id='0.7', data-bottom-id='0.5').collection_item.collection_item__06.bg_img
-          li(data-top-id='0.8').collection_item.collection_item__07.bg_img
-          li(data-top-id='0.1').collection_item.collection_item__08.bg_img
-        #collection_nav_shell
-          span.collection_nav_arrow.collection_nav_arrow__left
+        ul#collection_zero_item_shell
+          li(data-top-id='0.1', data-image='img/collection_zero_01.jpg')
+          li(data-top-id='0.6', data-bottom-id='0.2', data-image='img/collection_zero_02.jpg')
+          li(data-top-id='0.6', data-bottom-id='0.3', data-image='img/collection_zero_03.jpg')
+          li(data-top-id='0.6', data-bottom-id='0.4', data-image='img/collection_zero_04.jpg')
+          li(data-top-id='0.7', data-bottom-id='0.2', data-image='img/collection_zero_05.jpg')
+          li(data-top-id='0.7', data-bottom-id='0.5', data-image='img/collection_zero_06.jpg')
+          li(data-top-id='0.8', data-image='img/collection_zero_07.jpg')
+          li(data-top-id='0.1', data-image='img/collection_zero_08.jpg')
+        .collection_nav_shell
+          span.collection_nav_arrow.collection_nav__left
           //- span.collection_nav_info__single
           span.collection_nav_info__double 0.1
-          span.collection_nav_arrow.collection_nav_arrow__right.active
+          span.collection_nav_arrow.collection_nav__right.active
 
-     //- #philosophy.page.bg_img
-     //- #contact.page.backdrop
+      //- #philosophy.page.bg_img
+      //- #contact.page.backdrop
 
 
     #footer
@@ -52,4 +52,7 @@ html(lang='en')
 
     script(src='js/jquery-1.11.2.min.js')
     script(src='js/tweenmax.min.js')
+    script(src='js/textplugin.min.js')
+    script(src='js/CollectionNav.js')  
+    script(src='js/Collection.js')
     script(src='js/main.js')

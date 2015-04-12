@@ -94,7 +94,7 @@ dev.coffee: dev.setup
 	$(COFFEE.CMD) --watch --output $(BUILD.JS_DIR) $(SRC.COFFEE_DIR)
 
 dev.jade: dev.setup
-	$(JADE.CMD) --watch $(SRC.JADE_DIR)/*.jade --out $(BUILD.DIR)
+	$(JADE.CMD) --obj '{build:"dev"}' --watch $(SRC.JADE_DIR)/*.jade --out $(BUILD.DIR)
 
 dev.styl: dev.setup
 	$(STYLUS.CMD) --watch $(SRC.STYLUS_DIR) --out $(BUILD.CSS_DIR)
@@ -109,11 +109,11 @@ prod.dirs:
 prod.coffee:
 	@echo -e '\033[33mCompiling CoffeeScript...\033[0m'
 	@$(COFFEE.CMD) --output $(BUILD.JS_DIR) $(SRC.COFFEE_DIR) > /dev/null
-	@#$(UGLIFY.CMD) [<files to uglify>] --output <outputFile.min.js> > /dev/null
+	@#$(UGLIFY.CMD) [<files to uglify>] --output $(BUILD.JS_DIR)/theTen.min.js > /dev/null
 
 prod.jade:
 	@echo -e '\033[33mCompiling Jade...\033[0m'
-	@$(JADE.CMD) $(SRC.JADE_DIR) --out $(BUILD.DIR) > /dev/null
+	@$(JADE.CMD) --obj '{build:"prod"}' $(SRC.JADE_DIR) --out $(BUILD.DIR) > /dev/null
 
 prod.styl:
 	@echo -e '\033[33mCompiling Stylus...\033[0m'

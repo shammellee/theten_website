@@ -1,20 +1,29 @@
 'use strict'
 
 @theTEN =
-  $logo               : $('#logo_nav').find '.logo'
-  $pageNav            : $('.nav__main').find '.nav_item_page'
-  $pages              : $('#pages').find '.page'
-  $collectionNavLeft  : $('#collection_nav_shell').find '.collection_nav_arrow__left'
-  $collectionNavRight : $('#collection_nav_shell').find '.collection_nav_arrow__right'
-  curPage             : $('.nav__main').find('.nav_item_page').filter('.selected').data 'page'
+  $logo              : $('#logo_nav').find '.logo'
+  $pageNav           : $('.nav__main').find '.nav_item_page'
+  $pages             : $('#pages').find '.page'
+  $collectionNavLeft : $('#collection_nav_shell').find '.collection_nav_arrow__left'
+  $collectionNavRight: $('#collection_nav_shell').find '.collection_nav_arrow__right'
+  curPage            : $('.nav__main').find('.nav_item_page').filter('.selected').data 'page'
 
   init: ->
     # add click event listener to nav items and logo
     @$pageNav.add(@$logo).click (e) =>
       @setPage e.currentTarget.dataset.page
 
-    @$collectionNavLeft.click @previousCollectionItem
-    @$collectionNavRight.click @nextCollectionItem
+    collectionZero = new Collection
+    collectionZero.set
+      selector      : '#collection_zero_item_shell'
+      collectionName: 'Collection Zero'
+    collectionZero.init()
+
+    collectionNav = new CollectionNav
+    collectionNav.set
+      collection: collectionZero
+      selector  : '.collection_nav_shell'
+    collectionNav.init()
 
   setPage: (page) ->
     # do nothing if already on page
@@ -32,10 +41,5 @@
     # then add `selected` class to page with id matching `page` parameter
     @$pages.removeClass('selected').filter("##{page}").addClass('selected')
 
-  previousCollectionItem: (e) ->
-    console.log 'previous'
-
-  nextCollectionItem: (e) ->
-    console.log 'next'
-
 @theTEN.init()
+
