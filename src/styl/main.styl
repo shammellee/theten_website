@@ -79,18 +79,20 @@ body
   z-index 0
 
   > div
-    /*display  none*/
-    height   100%
-    left     0
-    opacity  0
-    overflow hidden
-    position fixed
-    top      0
-    width    100%
+    display  none
+    height     100%
+    left       0
+    opacity    0
+    overflow   hidden
+    position   fixed
+    top        0
+    visibility hidden
+    width      100%
 
     &.selected
-      /*display block*/
-      opacity 1
+      display    block
+      opacity    1
+      visibility visible
 
     &.page
       transition opacity PAGE_TRANSITION_SPEED TRANSITION_EASE

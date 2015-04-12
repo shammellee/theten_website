@@ -1,6 +1,7 @@
 'use strict'
 
 @Collection = ->
+  @$currentItem     = null
   @currentItemIndex = 0
   @transitionSpeed  = .15
 
@@ -13,6 +14,7 @@ $.extend @Collection.prototype,
     $collection   : []
     selector      : ''
     collectionName: ''
+    eventId       : ''
 
   attributes: ->
     @_attributes
@@ -40,9 +42,17 @@ $.extend @Collection.prototype,
     else
       @currentItemIndex++
 
-    TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:1})
+    @$currentItem = @_attributes.$collection.eq @currentItemIndex
+    data =
+      topId: @$currentItem.data 'topId'
+      bottomId: @$currentItem.data 'bottomId'
 
-  prev: ->
+    updateEvent = "#{@_attributes.eventId}:update"
+    $(window.document).trigger updateEvent, [data]
+
+    TweenMax.to(@$currentItem, @transitionSpeed, {autoAlpha:1})
+
+  prev: (e) ->
     TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:0})
 
     if @currentItemIndex <= 0
@@ -50,7 +60,15 @@ $.extend @Collection.prototype,
     else
       @currentItemIndex--
 
-    TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:1})
+    @$currentItem = @_attributes.$collection.eq @currentItemIndex
+    data =
+      topId: @$currentItem.data 'topId'
+      bottomId: @$currentItem.data 'bottomId'
+
+    updateEvent = "#{@_attributes.eventId}:update"
+    $(window.document).trigger updateEvent, [data]
+
+    TweenMax.to(@$currentItem, @transitionSpeed, {autoAlpha:1})
 
   set: (prop, val) ->
     return unless prop

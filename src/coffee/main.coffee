@@ -17,6 +17,7 @@
     collectionZero.set
       selector      : '#collection_zero_item_shell'
       collectionName: 'Collection Zero'
+      eventId       : 'collectionZero'
     collectionZero.init()
 
     collectionNav = new CollectionNav
@@ -32,7 +33,9 @@
     # otherwise, set current page to page parameter
     else
       @curPage = page
+      $curPage = @$pages.filter "##{page}"
 
+    #TweenMax.to($curPage, .15, {autoAlpha:0})
     # remove `selected` class from all nav items
     # then add `selected` class` to nav item with data-page value matching `page` parameter
     @$pageNav.removeClass('selected').filter("[data-page='#{page}']").addClass('selected')
@@ -40,6 +43,7 @@
     # remove `selected` class from all pages
     # then add `selected` class to page with id matching `page` parameter
     @$pages.removeClass('selected').filter("##{page}").addClass('selected')
+    #TweenMax.to(@$pages.filter("#{page}")
 
 @theTEN.init()
 
