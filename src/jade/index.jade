@@ -50,9 +50,14 @@ html(lang='en')
     #footer
       p &copy; 2015 theTEN Apparel, Inc. All rights reserved
 
-    script(src='js/jquery-1.11.2.min.js')
-    script(src='js/tweenmax.min.js')
-    script(src='js/textplugin.min.js')
-    script(src='js/CollectionNav.js')  
-    script(src='js/Collection.js')
-    script(src='js/main.js')
+    case build
+      when 'prod'
+        script(src='js/theten.min.js')
+      default
+        script(src='js/jquery-1.11.2.min.js')
+        script(src='js/tweenmax.min.js')
+        script(src='js/textplugin.min.js')
+        script(src='js/CollectionNav.js')  
+        script(src='js/Collection.js')
+        script(src='js/main.js')
+
