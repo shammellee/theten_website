@@ -12,9 +12,10 @@ $.extend @Collection.prototype,
   _attributes:
     align         : 'right'
     $collection   : []
-    selector      : ''
     collectionName: ''
-    eventId       : ''
+    onPage        : ''
+    selector      : ''
+    uniqueId      : ''
 
   attributes: ->
     @_attributes
@@ -25,8 +26,10 @@ $.extend @Collection.prototype,
     @_attributes[prop]
 
   init: ->
-    $collection = @_attributes.$collection = $(@_attributes.selector).children()
-    $collection.css('visibility','hidden').first().css('visibility','visible')
+    $collection   = @_attributes.$collection = $(@_attributes.selector).children()
+    @$currentItem = $collection.first()
+
+    @$currentItem.css({display:'initial', opacity:1, visibility:'visible'})
     $collection.addClass "collection_item collection_item__#{@_attributes.align}"
 
     @_attributes.$collection.each (i,el) ->
@@ -35,7 +38,12 @@ $.extend @Collection.prototype,
       $el.css 'background-image', "url(#{$el.data 'image'})"
 
   next: (e) ->
-    TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:0})
+    TweenMax.to(@$currentItem, @transitionSpeed,
+      opacity         : 0
+      onComplete      : @$currentItem.css
+      onCompleteParams: [{display:'none', visibility:'hidden'}]
+      onCompleteScope : @
+    )
 
     if @currentItemIndex >= @_attributes.$collection.length - 1
       @currentItemIndex = 0
@@ -43,17 +51,19 @@ $.extend @Collection.prototype,
       @currentItemIndex++
 
     @$currentItem = @_attributes.$collection.eq @currentItemIndex
-    data =
-      topId: @$currentItem.data 'topId'
-      bottomId: @$currentItem.data 'bottomId'
 
-    updateEvent = "#{@_attributes.eventId}:update"
-    $(window.document).trigger updateEvent, [data]
+    @triggerUpdate()
 
-    TweenMax.to(@$currentItem, @transitionSpeed, {autoAlpha:1})
+    @$currentItem.css({display:'initial', opacity:0, visibility:'visible'})
+    TweenMax.to(@$currentItem, @transitionSpeed, {opacity:1})
 
   prev: (e) ->
-    TweenMax.to(@_attributes.$collection.eq(@currentItemIndex), @transitionSpeed, {autoAlpha:0})
+    TweenMax.to(@$currentItem, @transitionSpeed,
+      opacity         : 0
+      onComplete      : @$currentItem.css
+      onCompleteParams: [{display:'none', visibility:'hidden'}]
+      onCompleteScope : @
+    )
 
     if @currentItemIndex <= 0
       @currentItemIndex = @_attributes.$collection.length - 1
@@ -65,10 +75,11 @@ $.extend @Collection.prototype,
       topId: @$currentItem.data 'topId'
       bottomId: @$currentItem.data 'bottomId'
 
-    updateEvent = "#{@_attributes.eventId}:update"
+    updateEvent = "#{@_attributes.uniqueId}:update"
     $(window.document).trigger updateEvent, [data]
 
-    TweenMax.to(@$currentItem, @transitionSpeed, {autoAlpha:1})
+    @$currentItem.css({display:'initial', opacity:0, visibility:'visible'})
+    TweenMax.to(@$currentItem, @transitionSpeed, {opacity:1})
 
   set: (prop, val) ->
     return unless prop
@@ -79,4 +90,12 @@ $.extend @Collection.prototype,
       @_attributes[prop] = if val then val else null
 
     @
+
+  triggerUpdate: ->
+    data =
+      topId   : @$currentItem.data 'topId'
+      bottomId: @$currentItem.data 'bottomId'
+
+    updateEvent = "#{@_attributes.uniqueId}:update"
+    $(window.document).trigger updateEvent, [data]
 

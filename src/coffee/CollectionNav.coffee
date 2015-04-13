@@ -31,8 +31,10 @@ $.extend @CollectionNav.prototype,
       @_attributes.collection.next(e) if e.which is 39
 
     # CUSTOM EVENT
-    updateEvent = "#{@_attributes.collection.get('eventId')}:update"
+    updateEvent = "#{@_attributes.collection.get('uniqueId')}:update"
     $(_window.document).on updateEvent, $.proxy @updateInfo, @
+
+    @_attributes.collection.triggerUpdate()
 
   set: (prop, val) ->
     return unless prop

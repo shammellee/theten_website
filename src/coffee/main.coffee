@@ -15,9 +15,10 @@
 
     collectionZero = new Collection
     collectionZero.set
-      selector      : '#collection_zero_item_shell'
       collectionName: 'Collection Zero'
-      eventId       : 'collectionZero'
+      onPage        : 'collection_zero'
+      selector      : '#collection_zero_item_shell'
+      uniqueId      : 'collectionZero'
     collectionZero.init()
 
     collectionNav = new CollectionNav
