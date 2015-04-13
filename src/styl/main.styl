@@ -15,12 +15,32 @@ body
 
 .bg_img
   background-attachment   fixed
-  background-position     center center
+  background-position     center top
   background-repeat       no-repeat
-  -webkit-background-size cover
-  -moz-background-size    cover
-  -o-background-size      cover
-  background-size         cover
+
+  &.bg_img__left
+    background-position center left
+
+  &.bg_img__right
+    background-position center right
+
+  &.bg_img__cover
+    -webkit-background-size cover
+    -moz-background-size    cover
+    -o-background-size      cover
+    background-size         cover
+
+  &.bg_img__contain
+    -webkit-background-size contain
+    -moz-background-size    contain
+    -o-background-size      contain
+    background-size         contain
+
+  &.bg_img__fill
+    -webkit-background-size 100% 100%
+    -moz-background-size    100% 100%
+    -o-background-size      100% 100%
+    background-size         100% 100%
 
 #logo_nav
   position fixed
@@ -98,11 +118,17 @@ body
 
     &.backdrop
       background-image        url('../img/bg.png')
-      background-repeat       repeat-x
       -webkit-background-size auto 100%
       -moz-background-size    auto 100%
       -o-background-size      auto 100%
       background-size         auto 100%
+
+      &.backdrop__repeat_x
+        background-repeat       repeat-x
+        -webkit-background-size 100% 100%
+        -moz-background-size    100% 100%
+        -o-background-size      100% 100%
+        background-size         100% 100%
 
   #home
     background-image url('../img/home_hero.jpg')
