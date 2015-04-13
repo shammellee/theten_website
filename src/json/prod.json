@@ -1,0 +1,33 @@
+{
+  "build":"dev"
+  ,"pages":
+  {
+    "collection_zero":
+    {
+      "items":
+      [
+        {"data-top-id":0.1, "data-image":"img/collection_zero_01.jpg"}
+        ,{"data-top-id":0.6, "data-bottom-id":0.2, "data-image":"img/collection_zero_02.jpg"}
+        ,{"data-top-id":0.6, "data-bottom-id":0.3, "data-image":"img/collection_zero_03.jpg"}
+        ,{"data-top-id":0.6, "data-bottom-id":0.4, "data-image":"img/collection_zero_04.jpg"}
+        ,{"data-top-id":0.7, "data-bottom-id":0.2, "data-image":"img/collection_zero_05.jpg"}
+        ,{"data-top-id":0.7, "data-bottom-id":0.5, "data-image":"img/collection_zero_06.jpg"}
+        ,{"data-top-id":0.8, "data-image":"img/collection_zero_07.jpg"}
+        ,{"data-top-id":0.1, "data-image":"img/collection_zero_08.jpg"}
+      ]
+    }
+    ,"philosophy":
+    {
+      "content":
+      [
+        "Based in New York City and proudly produced in the USA, theTEN is a clothing line of design-driven staples. Using natural, luxurious materials, every collection is a precisely edited wardrobe, addressing the need for simplicity in our modern lives. Each garment is made-to-order, reducing the waste and negative environmental impact of mass-manufacturing. Dedication to quality and timeless relevance provides the discerning client with clothing and accessories, which can be cherished for decades."
+        ,"theTEN. Designed for real women. Inspired by you."
+      ]
+    }
+  }
+  ,"scripts":
+  [
+    ,"js/theten.min.js"
+  ]
+}
+
