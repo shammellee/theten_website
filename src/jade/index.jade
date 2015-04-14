@@ -12,9 +12,9 @@ html(lang='en')
       #nav
         ul.nav__main
           li(data-page='home').nav_item__main.nav_item_page home
-          li(data-page='collection_zero').nav_item__main.nav_item_page.selected collection zero
+          li(data-page='collection_zero').nav_item__main.nav_item_page collection zero
           li.nav_item__main: a(href='http://thetenusa.tumblr.com/', target='_blank') style journal
-          li(data-page='philosophy').nav_item__main.nav_item_page philosophy
+          li(data-page='philosophy').nav_item__main.nav_item_page.selected philosophy
           li(data-page='contact').nav_item__main.nav_item_page contact
 
         ul.nav__social
@@ -27,7 +27,7 @@ html(lang='en')
 
       #home.page.bg_img.bg_img__cover
 
-      #collection_zero.page.bg_img.bg_img__contain.backdrop.backdrop__repeat_x.selected 
+      #collection_zero.page.bg_img.bg_img__contain.backdrop.backdrop__repeat_x
         ul#collection_zero_item_shell
           each item in pages.collection_zero.items
             li&attributes(item)
@@ -39,7 +39,11 @@ html(lang='en')
             span.bottomId
           span.collection_nav_arrow.collection_nav__right.active
 
-      #philosophy.page.bg_img.bg_img__cover
+      #philosophy.page.bg_img.bg_img__cover.selected
+        table.philosophy__body: tr: td
+          each text in pages.philosophy.content
+            p= text
+
       #contact.page.backdrop.backdrop__repeat_x
 
 
