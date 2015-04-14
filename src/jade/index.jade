@@ -11,10 +11,10 @@ html(lang='en')
 
       #nav
         ul.nav__main
-          li(data-page='home').nav_item__main.nav_item_page home
+          li(data-page='home').nav_item__main.nav_item_page.selected home
           li(data-page='collection_zero').nav_item__main.nav_item_page collection zero
           li.nav_item__main: a(href='http://thetenusa.tumblr.com/', target='_blank') style journal
-          li(data-page='philosophy').nav_item__main.nav_item_page.selected philosophy
+          li(data-page='philosophy').nav_item__main.nav_item_page philosophy
           li(data-page='contact').nav_item__main.nav_item_page contact
 
         ul.nav__social
@@ -25,7 +25,7 @@ html(lang='en')
 
     #pages
 
-      #home.page.bg_img.bg_img__cover
+      #home.page.bg_img.bg_img__cover.selected
 
       #collection_zero.page.bg_img.bg_img__contain.backdrop.backdrop__repeat_x
         ul#collection_zero_item_shell
@@ -39,17 +39,39 @@ html(lang='en')
             span.bottomId
           span.collection_nav_arrow.collection_nav__right.active
 
-      #philosophy.page.bg_img.bg_img__cover.selected
-        table.philosophy__body: tr: td
+      #philosophy.page.bg_img.bg_img__cover
+        table.philosophy__body.table__center: tr: td
           each text in pages.philosophy.content
             p= text
 
       #contact.page.backdrop.backdrop__repeat_x
+        table.table__center: tr: td
+          - var contact = pages.contact
+          .info__organization
+            p!= contact.organization.name
+            p!= contact.organization.city
+            p!= contact.organization.phone
+            p: a(href='mailto:#{contact.organization.email}')!= contact.organization.email
 
+          .info__credits
+            p
+              each credit, i in contact.credits
+                if i > 0
+                  span.credit_separator &nbsp;/&nbsp;
+                span
+                  | #{credit.category}:&nbsp;
 
+                  if credit.url
+                    a(href='#{credit.url}', target='_blank', rel='nofollow')!= credit.name
+                  else
+                   != credit.name
+
+          h1.message__signup!= contact.signupMessage
+
+          include inc/signup_form
     #footer
       p &copy; 2015 theTEN Apparel, Inc. All rights reserved
 
     each script in scripts
-      script(src=script)
+      script(src!=script)
 

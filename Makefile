@@ -63,7 +63,7 @@ COFFEE.CMD          = coffee $(COFFEE.FLAGS)
 COFFEE.FLAGS       := --compile --no-header
 
 JADE.CMD            = jade $(JADE.FLAGS)
-JADE.FLAGS         := --pretty
+JADE.FLAGS         := 
 
 LIVE.CMD            = while true; do clear; $1; sleep 1; done
 
@@ -131,7 +131,7 @@ prod.coffee:
 
 prod.jade:
 	@echo -e '\033[33mCompiling Jade...\033[0m'
-	@$(JADE.CMD) --obj $(SRC.JSON_DIR)/prod.json $(SRC.JADE_DIR) --out $(BUILD.DIR) > /dev/null
+	@$(JADE.CMD) --obj $(SRC.JSON_DIR)/prod.json $(SRC.JADE_DIR)/*.jade --out $(BUILD.DIR) > /dev/null
 
 prod.styl:
 	@echo -e '\033[33mCompiling Stylus...\033[0m'

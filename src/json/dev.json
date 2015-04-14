@@ -24,6 +24,22 @@
         ,"theTEN. Designed for real women. Inspired by you."
       ]
     }
+    ,"contact":
+    {
+      "organization":
+      {
+        "name": "theTEN Apparel, Inc."
+        ,"city":"New York"
+        ,"phone":"212.529.6229"
+        ,"email":"hello@thetenusa.com"
+      }
+      ,"credits":
+      [
+        {"category":"site", "name":"Shammel Lee", "url":"http://shammellee.com"}
+        ,{"category":"photos", "name":"G-PHY", "url":"https://www.facebook.com/pages/G-PHY/886759931342589"}
+      ]
+      ,"signupMessage":"JOIN theTEN&hellip;"
+    }
   }
   ,"scripts":
   [
