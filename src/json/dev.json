@@ -1,5 +1,9 @@
 {
   "build":"dev"
+  ,"meta":
+  {
+    "fbImage":"img/fb_thumbnail.jpg"
+  }
   ,"pages":
   {
     "collection_zero":
