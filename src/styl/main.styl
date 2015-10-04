@@ -53,6 +53,7 @@ body
   left        36px
   user-select none
   z-index     1
+
   .logo
     color         LOGO_COLOR
     cursor        pointer
@@ -62,6 +63,7 @@ body
   #nav
     ul
       clearfix()
+
     li
       clear       both
       cursor      pointer
@@ -69,19 +71,25 @@ body
       float       left
       font-size   .85em
       line-height 1.42
-      padding     1px 5px 0
       transition  NAV_TRANSITION_SPEED TRANSITION_EASE
 
       &:hover
         background DARK_GREY
         transition 0s
+
         a
           color TEXT_SELECTED
+
+      span
+        padding     1px 5px 0
+
       a
+        display         block
         text-decoration none
 
     .nav__main
       margin-bottom 8px
+
       .nav_item__main
 
         &.selected
@@ -90,13 +98,16 @@ body
 
         &:hover
           color TEXT_SELECTED
+
       a
         color DARK_GREY
+
     .nav__social
       .nav_item__social
 
         &:hover
           color TEXT_SELECTED
+
       a
         color LIGHT_GREY
 
