@@ -119,33 +119,34 @@ dev.styl: dev.setup
 
 # PRODUCTION
 prod: | $(PROD_DEPS)
-	@echo -e '\033[32mBuild Complete!\033[0m'
+	@echo -e '$(COLORS.GREEN)Build complete!$(COLORS.NORMAL)'
 
 prod.dirs:
 	@$(MKDIRS.CMD) $(BUILD.DIRS)
 
 prod.setup: prod.dirs
-	cp $(SRC.IMG_DIR)/* $(BUILD.IMG_DIR)/
-	cp $(SRC.FONT_DIR)/* $(BUILD.FONT_DIR)/
-	cp $(SRC.VENDOR_DIR)/*.js $(BUILD.JS_DIR)/
+	@echo -e '$(COLORS.YELLOW)Copying static assets...$(COLORS.NORMAL)'
+	@cp $(SRC.IMG_DIR)/* $(BUILD.IMG_DIR)/
+	@cp $(SRC.FONT_DIR)/* $(BUILD.FONT_DIR)/
+	@cp $(SRC.VENDOR_DIR)/*.js $(BUILD.JS_DIR)/
 
 prod.coffee:
-	@echo -e '\033[33mCompiling CoffeeScript...\033[0m'
+	@echo -e '$(COLORS.YELLOW)Compiling CoffeeScript...$(COLORS.NORMAL)'
 	@$(COFFEE.CMD) --output $(BUILD.JS_DIR) $(SRC.COFFEE_DIR) > /dev/null
 	@#$(UGLIFY.CMD) [<files to uglify>] --output $(BUILD.JS_DIR)/theTen.min.js > /dev/null
 
 prod.jade:
-	@echo -e '\033[33mCompiling Jade...\033[0m'
+	@echo -e '$(COLORS.YELLOW)Compiling Jade...$(COLORS.NORMAL)'
 	@$(JADE.CMD) --obj $(SRC.JSON_DIR)/prod.json $(SRC.JADE_DIR)/*.jade --out $(BUILD.DIR) > /dev/null
 
 prod.styl:
-	@echo -e '\033[33mCompiling Stylus...\033[0m'
+	@echo -e '$(COLORS.YELLOW)Compiling Stylus...$(COLORS.NORMAL)'
 	@$(STYLUS.CMD) --compress $(SRC.STYLUS_DIR) --out $(BUILD.CSS_DIR) > /dev/null
 
 clean:
-	@echo -e '\033[33mCleaning Project...\033[0m'
+	@echo -e '\033[33mCleaning project...\033[0m'
 	@$(CLEAN.CMD)\
 		$(BUILD.DIR)\
 		node_modules\
 		*.log
-	@echo -e '\033[32mProject Clean!\033[0m'
+	@echo -e '\033[32mProject clean!\033[0m'
