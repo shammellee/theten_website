@@ -4,8 +4,6 @@
   $logo              : $('#logo_nav').find '.logo'
   $pageNav           : $('.nav__main').find '.nav_item_page'
   $pages             : $('#pages').find '.page'
-  $collectionNavLeft : $('#collection_nav_shell').find '.collection_nav_arrow__left'
-  $collectionNavRight: $('#collection_nav_shell').find '.collection_nav_arrow__right'
   curPage            : $('.nav__main').find('.nav_item_page').filter('.selected').data 'page'
 
   init: ->
@@ -13,6 +11,7 @@
     @$pageNav.add(@$logo).click (e) =>
       @setPage e.currentTarget.dataset.page
 
+    # COLLECTION ZERO
     collectionZero = new Collection
     collectionZero.set
       collectionName: 'Collection Zero'
@@ -21,11 +20,26 @@
       uniqueId      : 'collectionZero'
     collectionZero.init()
 
-    collectionNav = new CollectionNav
-    collectionNav.set
+    collectionZeroNav = new CollectionNav
+    collectionZeroNav.set
       collection: collectionZero
-      selector  : '.collection_nav_shell'
-    collectionNav.init()
+      selector  : '.collection_zero_nav_shell'
+    collectionZeroNav.init()
+
+    # COLLECTION ONE
+    collectionOne = new Collection
+    collectionOne.set
+      collectionName: 'Collection One'
+      onPage        : 'collection_one'
+      selector      : '#collection_one_item_shell'
+      uniqueId      : 'collectionOne'
+    collectionOne.init()
+
+    collectionOneNav = new CollectionNav
+    collectionOneNav.set
+      collection: collectionOne
+      selector  : '.collection_one_nav_shell'
+    collectionOneNav.init()
 
   setPage: (page) ->
     # do nothing if already on page

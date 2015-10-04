@@ -3,17 +3,18 @@
 _window = @
 
 @CollectionNav = ->
-
-$.extend @CollectionNav.prototype,
-  _attributes:
+  @_attributes =
     collection: null
     selector  : ''
-    
+  @
+
+$.extend @CollectionNav.prototype,
   init: ->
-    # do nothing if `_attributes.collection` is set
+    # noop if `_attributes.collection` is not of type Collection
     return unless @_attributes.collection instanceof Collection
 
-    $nav                  = @_attributes.$nav = $ @_attributes.selector
+    @_attributes.$nav     = $ @_attributes.selector
+    $nav                  = @_attributes.$nav
     $navLeft              = $nav.find '.collection_nav__left'
     $navRight             = $nav.find '.collection_nav__right'
     @$navInfoSingle       = $nav.find '.collection_nav_info__single'
@@ -27,8 +28,9 @@ $.extend @CollectionNav.prototype,
 
     # KEY EVENTS
     $(_window.document).keydown (e) =>
-      @_attributes.collection.prev(e) if e.which is 37
-      @_attributes.collection.next(e) if e.which is 39
+      if _window.theTEN.curPage is @_attributes.collection._attributes.onPage
+        @_attributes.collection.prev(e) if e.which is 37
+        @_attributes.collection.next(e) if e.which is 39
 
     # CUSTOM EVENT
     updateEvent = "#{@_attributes.collection.get('uniqueId')}:update"

@@ -13,7 +13,9 @@ html(lang='en')
       #nav
         ul.nav__main
           li(data-page='home').nav_item__main.nav_item_page.selected home
+          li(data-page='collection_one').nav_item__main.nav_item_page collection one
           li(data-page='collection_zero').nav_item__main.nav_item_page collection zero
+          li.nav_item__main: a(href='#', target='_blank') shop
           li.nav_item__main: a(href='http://thetenusa.tumblr.com/', target='_blank') style journal
           li(data-page='philosophy').nav_item__main.nav_item_page philosophy
           li(data-page='contact').nav_item__main.nav_item_page contact
@@ -28,22 +30,23 @@ html(lang='en')
 
       #home.page.bg_img.bg_img__cover.selected
 
-      #collection_zero.page.bg_img.bg_img__contain.backdrop.backdrop__repeat_x
-        ul#collection_zero_item_shell
-          each item in pages.collection_zero.items
-            li&attributes(item)
-        .collection_nav_shell
-          span.collection_nav_arrow.collection_nav__left
-          span.collection_nav_info__single
-          span.collection_nav_info__double
-            span.topId
-            span.bottomId
-          span.collection_nav_arrow.collection_nav__right.active
+      each collection in pages.collections
+        div(id=collection.id,class='backdrop__' + collection.id).page.bg_img.bg_img__contain.backdrop.backdrop__repeat_x
+          ul(id=collection.id + '_item_shell')
+            each item in collection.items
+              li&attributes(item)
+               .collection_nav_shell(class=collection.id + '_nav_shell')
+                 span.collection_nav_arrow.collection_nav__left
+                 span.collection_nav_info__single
+                 span.collection_nav_info__double
+                   span.topId
+                   span.bottomId
+                 span.collection_nav_arrow.collection_nav__right.active
 
       #philosophy.page.bg_img.bg_img__cover
         table.philosophy__body.table__center: tr: td
           each text in pages.philosophy.content
-            p= text
+            p!= text
 
       #contact.page.backdrop.backdrop__repeat_x
         table.table__center: tr: td

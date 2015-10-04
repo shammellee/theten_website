@@ -43,14 +43,14 @@ BUILD.DIRS         += $(BUILD.IMG_DIR)
 BUILD.DIRS         += $(BUILD.JS_DIR)
 
 # DEPENDENCIES
-DEV_DEPS        := dev.dirs dev.setup dev.coffee dev.jade dev.styl
-PROD_DEPS        = $(DEV_DEPS:dev.%=prod.%)
-NPM.PKGS        := coffee-script@1.9.0
-NPM.PKGS        += stylus@0.50.0
-NPM.PKGS        += jade@1.9.2
-NPM.PKGS        += nib@1.1.0
-NPM.PKGS        += uglify-js@2.4.19
-BREW.PKGS       := cairo
+DEV_DEPS  := dev.dirs dev.setup dev.coffee dev.jade dev.styl
+PROD_DEPS  = $(DEV_DEPS:dev.%=prod.%)
+NPM.PKGS  := coffee-script@1.9.0
+NPM.PKGS  += stylus@0.50.0
+NPM.PKGS  += jade@1.9.2
+NPM.PKGS  += nib@1.1.0
+NPM.PKGS  += uglify-js@2.4.19
+BREW.PKGS := cairo
 
 # COMMANDS
 BREW_INSTALL.CMD    = brew install $(BREW_INSTALL.FLAGS)
@@ -123,6 +123,11 @@ prod: | $(PROD_DEPS)
 
 prod.dirs:
 	@$(MKDIRS.CMD) $(BUILD.DIRS)
+
+prod.setup: prod.dirs
+	cp $(SRC.IMG_DIR)/* $(BUILD.IMG_DIR)/
+	cp $(SRC.FONT_DIR)/* $(BUILD.FONT_DIR)/
+	cp $(SRC.VENDOR_DIR)/*.js $(BUILD.JS_DIR)/
 
 prod.coffee:
 	@echo -e '\033[33mCompiling CoffeeScript...\033[0m'

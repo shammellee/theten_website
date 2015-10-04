@@ -4,12 +4,7 @@
   @$currentItem     = null
   @currentItemIndex = 0
   @transitionSpeed  = .15
-
-  # return `false` so Collection.prototype is used
-  false
-
-$.extend @Collection.prototype,
-  _attributes:
+  @_attributes      =
     align         : 'right'
     $collection   : []
     collectionName: ''
@@ -17,6 +12,9 @@ $.extend @Collection.prototype,
     selector      : ''
     uniqueId      : ''
 
+  @
+
+$.extend @Collection.prototype,
   attributes: ->
     @_attributes
 
@@ -26,8 +24,9 @@ $.extend @Collection.prototype,
     @_attributes[prop]
 
   init: ->
-    $collection   = @_attributes.$collection = $(@_attributes.selector).children()
-    @$currentItem = $collection.first()
+    @_attributes.$collection = $(@_attributes.selector).children()
+    $collection              = @_attributes.$collection
+    @$currentItem            = $collection.first()
 
     @$currentItem.css({display:'initial', opacity:1, visibility:'visible'})
     $collection.addClass "collection_item collection_item__#{@_attributes.align}"
